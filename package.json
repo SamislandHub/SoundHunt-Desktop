@@ -1,0 +1,55 @@
+{
+  "name": "soundhunt-desktop",
+  "version": "3.2.7",
+  "description": "小点声 SoundHunt —— 基于 B 站公开音源的沉浸式音乐播放器（Windows 桌面版）",
+  "main": "src/main.js",
+  "type": "module",
+  "author": "SamislandHub",
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "test:core": "node test-core.mjs",
+    "build:win": "electron-builder --win",
+    "dist": "electron-builder"
+  },
+  "devDependencies": {
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.soundhunt.desktop",
+    "productName": "小点声",
+    "directories": {
+      "output": "dist"
+    },
+    "win": {
+      "target": [
+        {
+          "target": "nsis",
+          "arch": [
+            "x64"
+          ]
+        },
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "installerIcon": "build/icon.ico",
+      "uninstallerIcon": "build/icon.ico"
+    },
+    "files": [
+      "src/**/*",
+      "package.json"
+    ]
+  }
+}

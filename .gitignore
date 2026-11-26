@@ -1,0 +1,17 @@
+# 依赖与构建产物
+node_modules/
+dist/
+
+# 大体积二进制（通过 GitHub Release 分发，不入库）
+releases/*.exe
+releases/*.zip
+*.blockmap
+
+# 日志与临时
+*.log
+.DS_Store
+Thumbs.db
+
+# 本地环境
+.env
+.env.*
