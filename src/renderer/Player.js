@@ -55,7 +55,7 @@ export class Player {
     const r = await this.api.playurl(t, this.quality);
     if (!r.ok || serial !== this.requestSerial) return;
     if (r.data.cid && !t.cid) t.cid = r.data.cid;
-    this.candidates = (r.data.urls || []).map((u) => this._proxyUrl(u));
+    this.candidates = (r.data.urls || []).slice();
     this.candidateIndex = 0;
     this.lastQualityLabel = r.data.label;
     this.audio.src = this.candidates[0] || '';
@@ -68,11 +68,6 @@ export class Player {
     if (autoPlay) this.audio.play().catch(() => {});
     this.onState('track');
     this._prefetchNeighbors();
-  }
-
-  _proxyUrl(u) {
-    if (!this.proxyPort) return u;
-    return `http://127.0.0.1:${this.proxyPort}/audio?u=` + encodeURIComponent(u);
   }
 
   async _onError() {
