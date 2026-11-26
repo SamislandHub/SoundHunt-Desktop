@@ -228,10 +228,20 @@ export class BiliClient {
       if (!cid && view.pages && view.pages.length) cid = view.pages[0].cid || 0;
     }
     if (!cid) throw new Error('无法读取视频分集');
-    const play = (await getJson(
-      'https://api.bilibili.com/x/player/playurl?bvid=' + track.bvid +
-      '&cid=' + cid + '&qn=0&fnver=0&fnval=16&fourk=1'
-    )).data;
+    const playUrl = 'https://api.bilibili.com/x/player/playurl?bvid=' + track.bvid +
+      '&cid=' + cid + '&qn=0&fnver=0&fnval=16&fourk=1';
+    let play = null, lastErr = null;
+    for (let attempt = 0; attempt < 3; attempt++) {
+      try {
+        play = (await getJson(playUrl)).data;
+        break;
+      } catch (e) {
+        lastErr = e;
+        // 限流 / 临时错误：退避后重试
+        await new Promise((r) => setTimeout(r, 400 * (attempt + 1)));
+      }
+    }
+    if (!play) throw lastErr || new Error('播放地址请求失败');
     const audio = play.dash && Array.isArray(play.dash.audio) ? play.dash.audio : null;
     if (!audio || audio.length === 0) throw new Error('该内容暂无公开音频流');
     const sorted = [...audio].sort((a, b) => (b.bandwidth || 0) - (a.bandwidth || 0));
