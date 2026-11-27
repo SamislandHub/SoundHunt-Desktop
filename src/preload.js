@@ -17,8 +17,15 @@ contextBridge.exposeInMainWorld('api', {
   setSetting: (k, v) => call('set-setting', k, v),
   proxyPort: () => call('proxy-port'),
   qualityConstants: () => call('quality-constants'),
-  // 窗口控制
+  // 窗口 / 系统级控制
   minimize: () => ipcRenderer.send('win-minimize'),
-  maximize: () => ipcRenderer.send('win-maximize'),
+  hide: () => ipcRenderer.send('win-hide'),
   close: () => ipcRenderer.send('win-close'),
+  showStatusMenu: () => ipcRenderer.send('show-status-menu'),
+  // 自绘拖动：渲染层按住状态栏拖动，主进程按相对位移移动窗口
+  dragMove: (dx, dy) => ipcRenderer.send('win-drag-move', dx, dy),
+  // 推送播放状态给迷你组件
+  pushMiniState: (s) => ipcRenderer.send('mini-state', s),
+  // 接收迷你组件/托盘的远程控制
+  onRemoteCommand: (cb) => ipcRenderer.on('remote-command', (e, cmd) => cb(cmd)),
 });

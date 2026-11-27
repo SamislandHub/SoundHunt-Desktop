@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+<meta charset="utf-8">
+<title>小点声 · 播放条</title>
+<link rel="stylesheet" href="mini.css">
+</head>
+<body>
+<div id="mini">
+  <div class="m-disc" id="m-disc"><div class="m-label" id="m-cover"></div></div>
+  <div class="m-meta" id="m-open">
+    <div class="m-title" id="m-title">小点声</div>
+    <div class="m-artist" id="m-artist">点击放大</div>
+  </div>
+  <div class="m-ctrls">
+    <button class="m-toggle" id="m-toggle" title="播放/暂停">
+      <svg class="ic-pause" viewBox="0 0 24 24"><path d="M9 6v12M15 6v12" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>
+      <svg class="ic-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10-6.5z" fill="currentColor"/></svg>
+    </button>
+    <button class="m-next" id="m-next" title="下一首">
+      <svg viewBox="0 0 24 24"><path d="M6 6l9 6-9 6zM18 6v12" fill="currentColor" stroke="currentColor" stroke-width="1.4" stroke-linejoin="round"/></svg>
+    </button>
+  </div>
+  <div class="m-progress"><div class="m-fill" id="m-fill"></div></div>
+</div>
+<script type="module" src="mini.js"></script>
+</body>
+</html>

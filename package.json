@@ -1,6 +1,6 @@
 {
   "name": "soundhunt-desktop",
-  "version": "3.2.7",
+  "version": "4.0.1",
   "description": "小点声 SoundHunt —— 基于 B 站公开音源的沉浸式音乐播放器（Windows 桌面版）",
   "main": "src/main.js",
   "type": "module",
@@ -49,6 +49,7 @@
     },
     "files": [
       "src/**/*",
+      "build/tray.png",
       "package.json"
     ]
   }

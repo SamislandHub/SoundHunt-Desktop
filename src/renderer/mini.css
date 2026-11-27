@@ -1,0 +1,45 @@
+*{ margin:0; padding:0; box-sizing:border-box; }
+html,body{ width:100%; height:100%; overflow:hidden; background:transparent; }
+body{
+  font-family:-apple-system,"Segoe UI","Microsoft YaHei","PingFang SC",sans-serif;
+  color:#F4F2EE; -webkit-font-smoothing:antialiased; user-select:none;
+  -webkit-app-region:drag;
+}
+#mini{
+  position:relative; width:322px; height:76px;
+  display:flex; align-items:center; gap:11px; padding:0 14px;
+  border-radius:16px;
+  background:linear-gradient(135deg,rgba(32,32,37,.97),rgba(20,20,23,.98));
+  border:1px solid rgba(227,179,106,.28);
+  box-shadow:0 10px 30px rgba(0,0,0,.6),inset 0 1px 0 rgba(255,255,255,.06);
+}
+.m-disc{
+  position:relative; flex:0 0 46px; width:46px; height:46px; border-radius:50%;
+  background:radial-gradient(circle at 42% 38%,#1b1b1e,#0d0d10 60%,#08080a);
+  border:1px solid rgba(227,179,106,.5); overflow:hidden;
+}
+.m-disc.spin{ animation:spin 9s linear infinite; }
+@keyframes spin{ to{ transform:rotate(360deg); } }
+.m-label{
+  position:absolute; left:21%; top:21%; width:58%; height:58%; border-radius:50%;
+  background-size:cover; background-position:center; background-color:#3a2c18;
+  border:1px solid rgba(227,179,106,.55);
+}
+.m-meta{ flex:1; min-width:0; -webkit-app-region:no-drag; cursor:pointer; }
+.m-title{ font-size:12.5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.m-artist{ font-size:10px; color:#8E8B85; margin-top:5px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.m-ctrls{ display:flex; align-items:center; gap:4px; -webkit-app-region:no-drag; }
+.m-ctrls button{
+  width:32px; height:32px; border:0; border-radius:50%; background:transparent;
+  color:#F4F2EE; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:5px;
+}
+.m-ctrls button:hover{ background:rgba(227,179,106,.14); color:#F4D094; }
+.m-ctrls svg{ width:20px; height:20px; }
+.m-toggle .ic-play{ display:none; }
+.m-toggle.paused .ic-pause{ display:none; }
+.m-toggle.paused .ic-play{ display:block; }
+.m-progress{
+  position:absolute; left:16px; right:16px; bottom:7px; height:2px;
+  background:rgba(142,139,133,.25); border-radius:2px; overflow:hidden;
+}
+.m-fill{ height:100%; width:0; background:linear-gradient(90deg,#F4D094,#E3B36A,#B8843C); border-radius:2px; }
